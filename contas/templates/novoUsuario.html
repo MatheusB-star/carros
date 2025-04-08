@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    {% extends "base.html" %}
+    {% block content %}
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novo usuário</title>
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+</head>
+<body class="login">
+    <main class="geral">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <section id="dados" class="form">
+                {% if usuario_form.errors %}
+                    <div id="errorview">
+                        <ul class="error">
+                            {% for campo, error in usuario_form.errors.items %}
+                                {% for erro in error %}
+                                <li>
+                                    {{erro}}
+                                </li>
+                                {%endfor%}
+                            {%endfor%}
+                        </ul>
+                    </div>
+                {%endif%}
+            
+            
+                <label for =usuario_cpf>CPF:</label>
+                {{ usuario_form.usuario_cpf }}
+                <label for="usario_nome">Nome:</label>
+                {{usuario_form.usuario_nome}}
+                <labeL for="email">Email:</labeL>
+                {{usuario_form.usuario_email}}
+                <label for="senha">Senha:</label>
+                {{usuario_form.usuario_senha}}
+
+                <div class="esquerda">
+                    <input type="submit" value="Cadastrar" class="botao cadastrar">
+                </div>
+            </section>
+            
+        </form>
+            
+    </main>
+
+
+
+</body>
+{%endblock%}
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {%extends "base.html" %}
+    {%block content %}
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Login de usuário</title>
+</head>
+<body>
+    <main class="geral">
+        <form class="form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {%if messages %}
+                <div id="errorview">
+                    <ul class="error">
+                        {%for message in messages %}
+                            <li>{{message}}</li>
+                        {%endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+           
+            <label for="usuario_id">CPF:</label>
+            <input type="text" id="cpf" name="usuario_cpf" value="{{usuario_form.usuario_cpf.value|default:''}}" placeholder="000.000.000-00" maxlength="14">
+
+            
+            <label for="senha">Senha:</label>
+            <input type="password" name="usuario_senha" id="senha" value="{{usuario_form.usuario_senha.value|default:''}}" placeholder="Informe sua senha">
+            
+            <a href="#" onclick="mostrar_senha(); return false;">Mostrar/Ocultar Senha</a>
+
+            <button type="submit">Login</button>
+
+
+        </form>
+    </main>
+
+    <script>
+        function mostrar_senha(){
+            var campo = document.getElementById('senha');
+            if (campo.type === 'password'){
+                campo.type = 'text'
+            }
+            else {
+                campo.type = 'password'
+            }
+
+        }
+    </script>
+
+    <script>
+        document.getElementById('cpf').addEventListener('input', function(e){
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.replace(/^(\d{3})(\d)/, '$1.$2');
+            value = value.replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3');
+            value = value.replace(/^(\d{3})\.(\d{3})\.(\d{3})(\d)/, '$1.$2.$3-$4');
+            e.target.value = value;
+        })
+    </script>
+
+</body>
+
+{%endblock %}
+</html>

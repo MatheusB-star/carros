@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    {% extends "base.html" %}
+    {% block content %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novo carro</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+</head>
+<body>
+    <main class="geral">
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form">
+                {% if novo_carroForm.errors %}
+                    <div class="error-summary">
+                        <ul class="error">
+                            {% for campo, erros in novo_carroForm.errors.items %}
+                                {% for erro in erros %}
+                                    <li>{{ erro }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+
+
+                <label for="modelo">Modelo:</label>
+                    {{novo_carroForm.modelo}}
+                <label for="marca">Marca:</label>
+                    {{novo_carroForm.marca}}
+                <label for="ano_fabricação">Ano de fabricação</label>
+                    {{novo_carroForm.ano_fabricacao}}
+                <label for="ano_modelo">Ano do modelo:</label>
+                    {{novo_carroForm.ano_modelo}}
+                <label for="placa">Placa:</label>
+                    {{novo_carroForm.placa}}
+                <label for="valor">Valor:</label>
+                    {{novo_carroForm.valor}}
+                
+                <label class="image" for="carro_foto">Imagem:</label>
+                    {{novo_carroForm.carro_foto}}
+
+                <section class="esquerda">
+                    <input type="submit" value="Cadastrar" class="botao cadastrar">
+                </section>
+            </div>
+        </form>
+    </main>
+
+</body>
+{% endblock %}
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+    <style>
+        body {
+            background-color: rgb(224, 236, 247)
+        }
+    </style>
+    <title>Carros</title>
+</head>
+{% block content %}
+<body>
+    <h1 style="text-align:center; background-color: blue; color: white; height: 50px"> 
+        <ins>
+            Meus carros
+        </ins>
+    </h1>
+    <h3>
+        <ol>
+            <li style="font-size: 20pt">
+                Lista de carros:
+                <p></p>
+            <ul>
+                {% if carros.exists %}
+                    {% for carro in carros %}
+                    <li>
+                        {{carro.marca}}-{{carro.modelo}}-{{carro.ano_fabricacao}}
+                    </li>
+                    {% endfor %}
+                {% else %}
+                    <p>Nenhum carro disponível</p>
+                {% endif %}
+            </ul>
+    </li>
+    </ol>
+    </h3>
+</body>
+{% endblock %}
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%load static %}
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    
+    <title>Detalhe do produto</title>
+
+</head>
+<body class="meio">
+    <abbr title="Siap Sistemas"><img src="{% static 'images/siap 200.png'%}" alt="siap"></abbr>
+    <h1 class="titulo"><i>SIAP</i> Automobilisticos</h1>
+    <main>
+            <div class="car-card detail">
+                <img src="/media/{{carro.carro_foto}}" alt="{{produto.modelo}} - {{produto.marca}}">
+                <div class="group">
+                    <p class="field"><strong>Ano de fabricação: </strong>{{carro.ano_fabricacao}}</p>
+                    <p class="field"><strong>Ano do modelo: </strong>{{carro.ano_modelo}}</p>
+                </div>
+                <div class="group">
+                    <p class="field"><strong>Placa: </strong>{{carro.placa}}</p>
+                    <p class="field"><strong>Valor: </strong>{{carro.valor}}</p>
+                </div>
+            </div> 
+    </main>
+    <footer class="footer">Desenvolvido por SIAP Sistemas</footer>
+</body>
+</html>
