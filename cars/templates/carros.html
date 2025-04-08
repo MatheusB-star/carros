@@ -46,7 +46,11 @@
             {% if carros %}
                 {% for carro in carros %}
                 <div class="car-card">
-                    <abbr title="Ver detalhes do produto"><a href="{% url 'detalhes' carro.id %}" target="_blank"><img src="{{carro.carro_foto.url}}"></a></abbr>
+                    
+                    <abbr title="Ver detalhes do produto">
+                        <a href="{% url 'detalhes' carro.id %}" target="_blank">
+                            <img src="{{carro.carro_foto.url}}"></a></abbr>
+
                     <h2>{{carro.marca}} {{carro.modelo}}</h2>
                     <p> {{carro.ano_modelo}} - R$ {{carro.valor}} </p>
                 </div>

@@ -70,6 +70,8 @@ class novo_carro(CreateView):
 
 
 def carros_detail(request, carro_id):
+   produto = carro.objects.get(id=carro_id)
+   
    produto = get_object_or_404(carro, id=carro_id)
 
    return render(request, 'detail.html', {'carro':produto})

@@ -39,6 +39,7 @@ class loginview(View):
 
 
    def post(self, request):
+      usuario_form = forms.usuario_form(request.POST)
       tudocerto = True
       cpf = request.POST.get('usuario_cpf')
       senha = request.POST.get('usuario_senha')
@@ -46,29 +47,44 @@ class loginview(View):
       if not cpf:
          tudocerto = False
          messages.error(request, 'O usuário deve ser informado')
-      
+      else:
+         try:
+            usuario = md.usuario.objects.get(usuario_cpf=cpf)
+         except md.usuario.DoesNotExist:
+            tudocerto = False
+            messages.error(request, 'Usuário não cadastrado no sistema')
+
+
       if not senha:
          tudocerto = False
          messages.error(request, 'A senha deve ser informada')
+      else:
+         try:
+            autenticado = authenticate(request, username=cpf, password=senha)
+            if autenticado:
+               tudocerto = True
+            else:
+               tudocerto = False
+               messages.error(request, 'Senha incorreta')
+
+         except:
+            messages.error(request, 'Não foi possível validar a senha do usuário')
+            
+            
 
       if tudocerto:
-         try:
+       
             usuario = md.usuario.objects.get(usuario_cpf=cpf)
-            autenticado = authenticate(request, username=cpf, password=senha)
-
-            if autenticado:
-               login(request, autenticado)
-               nome = usuario.usuario_nome
-              
-               
-               
-               return redirect('carros_lista', cpf=cpf, nome=nome)
-            else:
-               messages.error(request, 'Senha incorreta')
+            login(request, autenticado)
+            nome = usuario.usuario_nome
+            return redirect('carros_lista', cpf=cpf, nome=nome)
             
-         except md.usuario.DoesNotExist:
-            messages.error(request,'Usuário não cadastrado no sistema')
+      else:
+         return render(request, 'login.html', {'usuario_form':usuario_form})
 
+            
+     
+         
 
 
 
