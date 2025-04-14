@@ -45,7 +45,11 @@
                     {{novo_carroForm.carro_foto}}
 
                 <section class="esquerda">
-                    <input type="submit" value="Cadastrar" class="botao cadastrar">
+                    {% if carro %}
+                        <input type="submit" value="Atualizar" class="botao cadastrar">
+                    {%else %}
+                        <input type="submit" value="Cadastrar" class="botao cadastrar">
+                    {%endif%}
                 </section>
             </div>
         </form>

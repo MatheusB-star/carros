@@ -45,15 +45,16 @@
         <section id="grid" class="car-grid">
             {% if carros %}
                 {% for carro in carros %}
-                <div class="car-card">
-                    
-                    <abbr title="Ver detalhes do produto">
-                        <a href="{% url 'detalhes' carro.id %}" target="_blank">
-                            <img src="{{carro.carro_foto.url}}"></a></abbr>
+                <abbr title="Ver detalhes do produto">
+                <a href="{% url 'detalhes' carro.id %}" target="_blank">
+                    <div class="car-card">
+                        <img src="{{carro.carro_foto.url}}">
 
-                    <h2>{{carro.marca}} {{carro.modelo}}</h2>
-                    <p> {{carro.ano_modelo}} - R$ {{carro.valor}} </p>
-                </div>
+                        <h2>{{carro.marca}} {{carro.modelo}}</h2>
+                        <p> {{carro.ano_modelo}} - R$ {{carro.valor}} </p>
+                    </div>
+                </a></abbr>
+                
                 {% endfor %}
             {% else %}
                 <p class="no-results">Nenhum carro encontrado.</p>

@@ -17,6 +17,9 @@
             <div class="car-card detail">
                 <img src="/media/{{carro.carro_foto}}" alt="{{produto.modelo}} - {{produto.marca}}">
                 <div class="group">
+                    <p class="field">{{carro.marca}} {{carro.modelo}}</p>
+                </div>
+                <div class="group">
                     <p class="field"><strong>Ano de fabricação: </strong>{{carro.ano_fabricacao}}</p>
                     <p class="field"><strong>Ano do modelo: </strong>{{carro.ano_modelo}}</p>
                 </div>
@@ -24,7 +27,11 @@
                     <p class="field"><strong>Placa: </strong>{{carro.placa}}</p>
                     <p class="field"><strong>Valor: </strong>{{carro.valor}}</p>
                 </div>
-            </div> 
+            </div>
+            <section style="text-align: center;" id="botao"> 
+                <a class="botao atualizar" href="{% url 'atualizar_carro' carro.id %}">Editar dados</a>
+            </section>
+             
     </main>
     <footer class="footer">Desenvolvido por SIAP Sistemas</footer>
 </body>

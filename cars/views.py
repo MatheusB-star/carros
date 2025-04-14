@@ -40,6 +40,27 @@ class carros_view(ListView):
       return carros
    
 
+
+class update_carro(View):
+
+   def get(self, request, carro_id):
+      objeto = get_object_or_404(carro, id=carro_id)
+      novo_carroForm = forms.carromodelform(instance=objeto)
+      return render(request, 'novocarro.html', {'novo_carroForm': novo_carroForm, 'carro': objeto})
+   
+
+   def post(self, request, carro_id):
+      objeto = get_object_or_404(carro, id=carro_id)
+      form = forms.carromodelform(request.POST, instance=objeto)
+
+      if form.is_valid():
+         form.save()
+         return redirect('detalhes', carro_id=objeto.id)
+      
+      return render(request, 'novocarro.html', {'novo_carroForm': form, 'carro':objeto})
+      
+
+
    
 class novocarro(View):
 

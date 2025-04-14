@@ -31,4 +31,5 @@ urlpatterns = [
     path('login_usuario', c_views.loginview.as_view(), name ='login_usuario'),
     path('logout', c_views.logout_view, name ='logout'),
     path('detalhes/<int:carro_id>', views.carros_detail, name='detalhes'),
+    path('update_carro/<int:carro_id>', views.update_carro.as_view(), name='atualizar_carro'),
  ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

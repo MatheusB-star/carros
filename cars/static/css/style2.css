@@ -132,11 +132,45 @@ a{
 
 a:hover{
     cursor: pointer;
-    font-size: 16.5px;
+    /* font-size: 16.5px; */
     text-decoration: underline;
+   
     /* transform: scale(1.1); */
 
 }
+
+.atualizar{
+    display: inline-block;
+    background-color: rgb(236, 232, 0);
+    border: 2px;
+    border-style: outset;
+    border-color: rgba(0, 0, 0, 0.434);
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 22px;
+    margin:3px;
+    margin-top: 10px;
+    border-radius: 5px;
+    color: black;
+}
+
+ 
+.atualizar:hover{
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.351);
+}
+
+.car-grid a{
+    display: block;
+    text-decoration: none;
+    color:black;
+    transition: all 0.1s ease;
+}
+
+.car-grid a:hover{
+    text-decoration: underline;
+    color:blue;
+
+}
+
 
 .sair{
     display: inline-block;
@@ -218,6 +252,8 @@ header > img{
   }
 
 
+
+
   .car-card{
     background-color: rgb(227, 225, 225);
     box-shadow: 0 2px 6px rgba(0, 0 ,0, 0.2);
@@ -284,6 +320,7 @@ header > img{
 
 abbr{
     text-decoration:none;
+    
 }
 
 .form{
@@ -355,12 +392,18 @@ abbr{
 }
 
 
+.cadastrar:hover{
+    box-shadow: 0px 0px 8px rgba(5, 198, 47, 0.66);
+}
+
+
+
 .botao{
     font-family: 'aharoni', Times, serif;
-    color:white;
+    /* color:white; */
     font-size: 20px;
     padding: 4px 10px;
-    width: 100px;
+   
     transition: all 0.3s ease;}
     
 
@@ -371,7 +414,11 @@ abbr{
     cursor: pointer;
     transform: scale(1.1);
     text-decoration:underline;
-    box-shadow: 0px 0px 8px rgba(5, 198, 47, 0.66)
+}
+
+
+.botao:active{
+    transform:scale(1.06);
 }
 
 .esquerda{
