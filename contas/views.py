@@ -6,6 +6,7 @@ from django.contrib import messages
 from contas import models as md
 from django.urls import reverse
 from django.views import View 
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 
@@ -77,7 +78,9 @@ class loginview(View):
             usuario = md.usuario.objects.get(usuario_cpf=cpf)
             login(request, autenticado)
             nome = usuario.usuario_nome
-            return redirect('carros_lista', cpf=cpf, nome=nome)
+            url = reverse('carros_lista') + f'?cpf={cpf}&nome={nome}'
+            
+            return HttpResponseRedirect(url)
             
       else:
          return render(request, 'login.html', {'usuario_form':usuario_form})

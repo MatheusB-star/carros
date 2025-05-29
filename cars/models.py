@@ -28,6 +28,16 @@ class carro(models.Model):
 
 
     
+class car_inventory(models.Model):
+    car_count = models.IntegerField()
+    car_value = models.FloatField()
+    car_date = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ['-car_date']
+
+    
+    def __str__(self):
+        return f'{self.car_count} - {self.car_value}'
 
     

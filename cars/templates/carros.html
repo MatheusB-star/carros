@@ -21,7 +21,7 @@
             <ul class="links">
             
                 <li>Olá {{nome}}</li>
-                <li><a href="{% url 'novo_carro' %}">Cadastrar carro</a></li>
+                <li><a href="{% url 'novo_carro' cpf=cpf nome=nome %}">Cadastrar carro</a></li>
             </ul>
             {% else %}
                 <ul class="links">
@@ -29,14 +29,14 @@
                     <li><a href="{% url 'login_usuario' %}">Login</a></li>
             {% endif %}
 
-                <li><a href="{% url 'carros_lista' cpf=cpf nome=nome %}">Carros</a></li>
+                <li><a href="{% url 'carros_lista'%}?cpf={{cpf}}&nome={{nome}}">Carros</a></li>
             </ul>
        
     </header>
 
 
     <main>
-        <form method="GET" action="{% url 'carros_lista' cpf=cpf nome=nome %}">
+        <form method="GET" action="{% url 'carros_lista'%}?cpf={{cpf}}&nome={{nome}}">
             <input type="text" name="search" placeholder="Buscar carro...">
             <input type="text" name="data" placeholder="Ano do modelo...">
             <button type="submit">Buscar</button>
@@ -46,7 +46,7 @@
             {% if carros %}
                 {% for carro in carros %}
                 <abbr title="Ver detalhes do produto">
-                <a href="{% url 'detalhes' carro.id %}" target="_blank">
+                <a href="{% url 'detalhes' carro_id=carro.id %}?cpf={{cpf}}&nome={{nome}}" target="_blank">
                     <div class="car-card">
                         <img src="{{carro.carro_foto.url}}">
 

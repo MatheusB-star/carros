@@ -17,6 +17,7 @@ class UsuarioManager(BaseUserManager):
         extra_fields.setdefault('is_superuser', True)
         return self.create_user(usuario_cpf, usuario_email, usuario_nome, password, **extra_fields)
 
+
 class usuario(AbstractBaseUser, PermissionsMixin):
     usuario_id = models.AutoField(primary_key=True)
     usuario_cpf = models.CharField(max_length=14, unique=True)

@@ -6,7 +6,7 @@
     {%load static %}
     <link rel="stylesheet" href="{% static 'css/style2.css' %}">
     <link rel="shortcut icon" href="{% static 'images/Siap 200.png' %}">
-    
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
     <title>Detalhe do produto</title>
 
 </head>
@@ -27,12 +27,22 @@
                     <p class="field"><strong>Placa: </strong>{{carro.placa}}</p>
                     <p class="field"><strong>Valor: </strong>{{carro.valor}}</p>
                 </div>
+                
             </div>
             <section style="text-align: center;" id="botao"> 
                 <a class="botao atualizar" href="{% url 'atualizar_carro' carro.id %}">Editar dados</a>
+                
+                <a class="botao deletar" 
+                hx-get="{% url 'confirmar' pk=carro.pk %}?cpf={{cpf}}&nome={{nome}}" 
+                hx-target="#modal-container" 
+                hx-trigger="click" 
+                hx-swap="innerHTML">Deletar</a>
             </section>
-             
     </main>
+    <div id="modal-container"></div>
+
     <footer class="footer">Desenvolvido por SIAP Sistemas</footer>
+
+
 </body>
 </html>

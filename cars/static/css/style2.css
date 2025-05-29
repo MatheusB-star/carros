@@ -153,6 +153,27 @@ a:hover{
     color: black;
 }
 
+
+
+
+.deletar{
+    display: inline-block;
+    background-color: red;
+    border: 2px;
+    border-style: outset;
+    border-color: rgba(0, 0, 0, 0.434);
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 22px;
+    margin:3px;
+    margin-top: 10px;
+    border-radius: 5px;
+    color: white;
+}
+
+
+.deletar:hover{
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.351);
+}
  
 .atualizar:hover{
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.351);

@@ -1,0 +1,12 @@
+<div style="position:fixed; top:30%; left:50%; transform:translate(-50%, -30%); background:white; padding:20px; box-shadow:0 0 10px black;">
+    <h3>Tem certeza que deseja deletar <strong>"{{object.marca}} {{object.modelo}}"</strong>?</h3>
+    
+    <form method="post">
+      <input type="hidden" name="cpf" value="{{ request.GET.cpf }}">
+      <input type="hidden" name="nome" value="{{ request.GET.nome }}">
+      
+      {% csrf_token %}
+      <button type="submit">Confirmar</button>
+      <button type="button" onclick="document.getElementById('modal-container').innerHTML = '';">Cancelar</button>
+    </form>
+  </div>

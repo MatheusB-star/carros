@@ -25,11 +25,14 @@ from contas import views as c_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('cars/<str:cpf>/<str:nome>/', views.carrosview.as_view(), name='carros_lista'),
-    path('novocarro/', views.novocarro.as_view(), name='novo_carro'),
+    path('cars/', views.carrosview.as_view(), name='carros_lista'),
+    path('novocarro/<str:cpf>/<str:nome>', views.novocarro.as_view(), name='novo_carro'),
     path('novousuario', c_views.novo_usuario, name='novo_usuario'),
     path('login_usuario', c_views.loginview.as_view(), name ='login_usuario'),
     path('logout', c_views.logout_view, name ='logout'),
     path('detalhes/<int:carro_id>', views.carros_detail, name='detalhes'),
     path('update_carro/<int:carro_id>', views.update_carro.as_view(), name='atualizar_carro'),
+    path('detalhes/<int:pk>/confirmar', views.delete_carro.as_view(), name='confirmar'),
+    path('detalhes/deletar/<int:carro_id>', views.deletar, name='deletar'),
+    
  ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
