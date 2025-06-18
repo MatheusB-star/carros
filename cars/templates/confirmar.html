@@ -2,14 +2,16 @@
     <h3>Tem certeza que deseja deletar <strong>"{{carro.marca}} {{carro.modelo}}"</strong>?</h3>
     
     <form
-    method="post"
-    method="post"
+      method="post"
       hx-post="{% url 'deletar' carro_id=carro.id %}?cpf={{cpf}}&nome={{nome}}" 
       hx-target="body" 
       hx-swap="none"
       >
       {% csrf_token %}
-      <button type="submit">Confirmar</button>
+      <button id="confirmar" type="submit">Confirmar</button>
       <button type="button" onclick="document.getElementById('modal-container').innerHTML = '';">Cancelar</button>
     </form>
   </div>
+
+
+ 

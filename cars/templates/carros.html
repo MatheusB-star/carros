@@ -21,7 +21,7 @@
             <ul class="links">
             
                 <li>Olá {{nome}}</li>
-                <li><a href="{% url 'novo_carro' cpf=cpf nome=nome %}">Cadastrar carro</a></li>
+                <li><a href="{% url 'novo_carro'%}?cpf={{cpf}}&nome={{nome}}">Cadastrar carro</a></li>
             </ul>
             {% else %}
                 <ul class="links">

@@ -5,7 +5,7 @@ from django.views import View
 from django.views.generic import ListView, CreateView, DetailView, DeleteView
 from django.views.decorators.http import require_POST
 from django.urls import reverse
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -70,7 +70,7 @@ class update_carro(View):
 
 class delete_carro(DeleteView):
    model = carro
-   template_name = 'confirmarClass.html'
+   template_name = 'confirmar.html'
 
 
    def delete(self, request, *args, **kwargs):
@@ -81,7 +81,9 @@ class delete_carro(DeleteView):
    def get_success_url(self):
       cpf = self.request.POST.get('cpf')
       nome = self.request.POST.get('nome')
-      return reverse('carros_lista', kwargs={'cpf':cpf, 'nome':nome})
+
+      url = reverse('carros_lista') + f'?cpf={cpf}&nome={nome}'
+      return HttpResponseRedirect(url)
 
 
 # def confirmar(request, carro_id):
@@ -95,11 +97,12 @@ class delete_carro(DeleteView):
    
 @require_POST
 def deletar(request, carro_id):
+   print('entrou')
    objeto = get_object_or_404(carro, id=carro_id)
    objeto.delete()
    cpf = request.GET.get('cpf')
    nome = request.GET.get('nome')
-   url = reverse('carros_lista', kwargs={'cpf': cpf, 'nome': nome})
+   url = reverse('carros_lista') + f'?cpf={cpf}&nome={nome}'
    
    response = HttpResponse()
    response["HX-Redirect"] = url
@@ -123,7 +126,8 @@ class novocarro(LoginRequiredMixin, View):
       # validando dados antes o salvamento
       if novo_carroForm.is_valid():
          novo_carroForm.save()
-         return redirect('carros_lista', cpf=cpf, nome=nome)
+         url = reverse('carros_lista') + f'?cpf={cpf}&nome={nome}'
+         return HttpResponseRedirect(url)
       
       return render(request, 'novocarro.html', {'novo_carroForm':novo_carroForm, 'cpf': cpf, 'nome': nome})
    

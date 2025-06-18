@@ -44,5 +44,23 @@
     <footer class="footer">Desenvolvido por SIAP Sistemas</footer>
 
 
+
+
+    <script>
+       document.body.addEventListener("htmx:afterSwap", function(evt) {
+        if (evt.target.id === "modal-container") {
+            const confirmarbtn = document.getElementById('confirmar');
+            if (confirmarbtn) {
+                    confirmarbtn.addEventListener("click", function() {
+                        console.log("tentou deletar");
+                    });
+                }
+            }
+        });
+
+    </script>
+
 </body>
+
 </html>
+

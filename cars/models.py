@@ -20,8 +20,12 @@ class carro(models.Model):
     placa = models.CharField(max_length=10, blank=True, null=True)
     valor = models.FloatField(blank=True, null=True)
     carro_foto = models.ImageField(upload_to='cars/', blank=True, null=True)
+    bio = models.TextField(null=True, blank=True, max_length=200)
+  
     
-    
+    class Meta:
+        verbose_name_plural  = 'Carros'
+
     def __str__(self):
         return self.modelo
 
@@ -34,6 +38,7 @@ class car_inventory(models.Model):
     car_date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
+        verbose_name = 'Inventário'
         ordering = ['-car_date']
 
     
