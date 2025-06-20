@@ -33,7 +33,7 @@
                 <a class="botao atualizar" href="{% url 'atualizar_carro' carro.id %}">Editar dados</a>
                 
                 <a class="botao deletar" 
-                hx-get="{% url 'confirmar' pk=carro.pk %}?cpf={{cpf}}&nome={{nome}}" 
+                hx-get="{% url 'confirmar' carro_id=carro.id %}?cpf={{cpf}}&nome={{nome}}" 
                 hx-target="#modal-container" 
                 hx-trigger="click" 
                 hx-swap="innerHTML">Deletar</a>

@@ -18,8 +18,8 @@ class carrosview(LoginRequiredMixin, View):
    login_url = 'login_usuario'
    
    def get(self, request):
-      cpf = self.request.GET.get('cpf')
-      nome = self.request.GET.get('nome')
+      cpf = request.GET.get('cpf')
+      nome = request.GET.get('nome')
       search = request.GET.get('search')
 
       if search:
@@ -68,40 +68,42 @@ class update_carro(View):
       
 
 
-class delete_carro(DeleteView):
-   model = carro
-   template_name = 'confirmar.html'
+# class delete_carro(DeleteView):
+#    model = carro
+#    template_name = 'confirmar.html'
 
 
-   def delete(self, request, *args, **kwargs):
-    print("DELETANDO...")
-    return super().delete(request, *args, **kwargs)
+#    def delete(self, request, cpf, nome, *args, **kwargs):
+#     print("DELETANDO...")
+#     return super()(request, *args, **kwargs)
    
    
-   def get_success_url(self):
-      cpf = self.request.POST.get('cpf')
-      nome = self.request.POST.get('nome')
+#    def get_success_url(self):
+#       cpf = self.request.POST.get('cpf')
+#       nome = self.request.POST.get('nome')
 
-      url = reverse('carros_lista') + f'?cpf={cpf}&nome={nome}'
-      return HttpResponseRedirect(url)
+#       url = reverse('carros_lista') + f'?cpf={cpf}&nome={nome}'
+#       return HttpResponseRedirect(url)
 
 
-# def confirmar(request, carro_id):
-#    objeto = get_object_or_404(carro, id=carro_id)
-#    cpf = request.GET.get('cpf')
-#    nome = request.GET.get('nome')
-#    return render(request,'confirmar.html', {'carro': objeto, 'cpf':cpf, 'nome': nome})
+def confirmar(request, carro_id):
+   objeto = get_object_or_404(carro, id=carro_id)
+   cpf = request.GET.get('cpf')
+   nome = request.GET.get('nome')
+   return render(request,'confirmar.html', {'carro': objeto, 'cpf':cpf, 'nome': nome})
 
 
 
    
 @require_POST
 def deletar(request, carro_id):
+   cpf = request.POST.get('cpf')
+   nome = request.POST.get('nome')
    print('entrou')
+   print(f'O cpf é {cpf}, o nome é: {nome}')
    objeto = get_object_or_404(carro, id=carro_id)
-   objeto.delete()
-   cpf = request.GET.get('cpf')
-   nome = request.GET.get('nome')
+   # objeto.delete()
+   
    url = reverse('carros_lista') + f'?cpf={cpf}&nome={nome}'
    
    response = HttpResponse()

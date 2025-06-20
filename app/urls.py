@@ -32,7 +32,7 @@ urlpatterns = [
     path('logout', c_views.logout_view, name ='logout'),
     path('detalhes/<int:carro_id>', views.carros_detail, name='detalhes'),
     path('update_carro/<int:carro_id>', views.update_carro.as_view(), name='atualizar_carro'),
-    path('detalhes/<int:pk>/confirmar', views.delete_carro.as_view(), name='confirmar'),
+    path('confirmar/<int:carro_id>', views.confirmar, name='confirmar'),
     path('deletar/<int:carro_id>', views.deletar, name='deletar'),
     
  ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
